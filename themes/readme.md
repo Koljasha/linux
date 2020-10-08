@@ -1,1 +1,1 @@
-### Темы McOs для Cinnamon и XFCE
+### Темы McOs для Cinnamon, XFCE, Openbox
