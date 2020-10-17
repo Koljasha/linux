@@ -640,8 +640,10 @@ class terminal(Command):
     """
 
     def execute(self):
-        from ranger.ext.get_executables import get_term
-        self.fm.run(get_term(), flags='f')
+        # comment from default file
+        # from ranger.ext.get_executables import get_term
+        # self.fm.run(get_term(), flags='f')
+        self.fm.run('x-terminal-emulator -m', flags='f')
 
 
 class delete(Command):
@@ -722,12 +724,15 @@ class trash(Command):
     def execute(self):
         import shlex
         from functools import partial
+
+        # this import add to default file
         from ranger.container.file import File
 
         def is_directory_with_files(path):
             return os.path.isdir(path) and not os.path.islink(path) and len(os.listdir(path)) > 0
 
         if self.rest(1):
+            # comment from default file
             # files = shlex.split(self.rest(1))
             # many_files = (len(files) > 1 or is_directory_with_files(files[0]))
             file_names = shlex.split(self.rest(1))
@@ -740,6 +745,7 @@ class trash(Command):
                 self.fm.notify("Error: no file selected for deletion!", bad=True)
                 return
 
+            # comment from default file
             # relative_path used for a user-friendly output in the confirmation.
             # files = [f.relative_path for f in self.fm.thistab.get_selection()]
             files = self.fm.thistab.get_selection()
@@ -748,6 +754,7 @@ class trash(Command):
         confirm = self.fm.settings.confirm_on_delete
         if confirm != 'never' and (confirm != 'multiple' or many_files):
             self.fm.ui.console.ask(
+                # comment from default file
                 # "Confirm deletion of: %s (y/N)" % ', '.join(files),
                 "Confirm deletion of: %s (y/N)" % ', '.join(file_names),
                 partial(self._question_callback, files),
