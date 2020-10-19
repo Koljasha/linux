@@ -1,5 +1,0 @@
-### Config for:
-
-* Enlightenment
-* Terminology
-
